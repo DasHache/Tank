@@ -1,6 +1,6 @@
 import Tkinter as Tk
 
-# v.0.1.3
+# v.0.2.0 - Adding a timer
 
 root = Tk.Tk()
 
@@ -41,17 +41,27 @@ chx1 = ch_centerx - 10
 chy1 = ch_centery - 10
 chx2 = ch_centerx + 10
 chy2 = ch_centery + 10
-w.create_oval(chx1, chy1, chx2, chy2, fill="yellow")
+ch = w.create_oval(chx1, chy1, chx2, chy2, fill="yellow")
+
+
+from threading import Timer
+def callback():
+    global ch, w;
+    print "It is time! "
+    w.move(ch, 10, 10)
+
+print "Make a timer for 3 seconds."
+t = Timer(3.0, callback)
+print "Start the timer..."
+t.start() 
+
 
 
 
 root.mainloop()
 
 
-# current version is v.0.1.2
-# to get to v.0.1.3:
-# 1. draw the barrel (long narrow rectangular in the middle of the tank)
-# 2. add a timer
+
 
 
 
