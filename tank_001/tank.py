@@ -1,7 +1,5 @@
 import Tkinter as Tk
 
-# v.0.2.0 - Adding a timer
-
 root = Tk.Tk()
 
 canvasw = 700
@@ -45,23 +43,40 @@ ch = w.create_oval(chx1, chy1, chx2, chy2, fill="yellow")
 
 
 from threading import Timer
-def callback():
-    global ch, w;
-    print "It is time! "
-    w.move(ch, 10, 10)
+class RTimer:
+    def __init__(self):
+        pass
 
-print "Make a timer for 3 seconds."
-t = Timer(3.0, callback)
-print "Start the timer..."
-t.start() 
+    def start(self):
+        self.t = Timer(1.0, self.callback)
+        self.t.start()
+
+    def callback(self):
+        w.move(ch, 10, 0)
+        self.start()
+
+rt = RTimer()
+rt.start()
+
+
+def key_function(event):
+    #print "pressed", repr(event.char)
+    if event.char == u'\uf700':
+        ch.move(ch, 0, -10)
+    else:
+        ch.move(ch, 0, 10)
+
+
+def mouse_function(event):
+    w.focus_set()
+    print "clicked at", event.x, event.y
+w.bind("<Button-1>", mouse_function)
+w.bind("<Key>", key_function)
 
 
 
 
 root.mainloop()
-
-
-
 
 
 
