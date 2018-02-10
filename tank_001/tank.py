@@ -62,14 +62,15 @@ rt.start()
 def key_function(event):
     #print "pressed", repr(event.char)
     if event.char == u'\uf700':
-        ch.move(ch, 0, -10)
+        w.move(ch, 0, -10)
     else:
-        ch.move(ch, 0, 10)
+        w.move(ch, 0, 10)
 
 
 def mouse_function(event):
     w.focus_set()
     print "clicked at", event.x, event.y
+
 w.bind("<Button-1>", mouse_function)
 w.bind("<Key>", key_function)
 
