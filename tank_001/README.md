@@ -3,14 +3,9 @@
 
 ### Tank Project
 
-- [+] = something added
-- [-] = something removed
-- [!] = ToDo
-- [~] = something modified
-
 v.0.5.0
 
-  - [+] Add update() method to class World.
-  - [!] Make update() apply the forces to the objects.
+  - Add update() method to class World.
+  - TODO: Make update() apply the forces to the objects.
 
 
