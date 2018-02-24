@@ -3,5 +3,14 @@
 
 ### Tank Project
 
-There will be a description...
+- [+] = something added
+- [-] = something removed
+- [!] = ToDo
+- [~] = something modified
+
+v.0.5.0
+
+  - [+] Add update() method to class World.
+  - [!] Make update() apply the forces to the objects.
+
 
