@@ -7,15 +7,11 @@ from world import World
 class Game:
 
     def __init__(self):
-        pass
+        self.w = World()
+        self.h = Handle(self.w)
 
     def start(self):
-        w = World()
-        #t = Tank(w, 100, 100)
-        #rt = RTimer(w, t)
-        #rt.start()
-        w.run()
-
+        self.w.run()
 
 
 game = Game()
