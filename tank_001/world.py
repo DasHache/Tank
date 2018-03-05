@@ -14,7 +14,7 @@ class World:
         self.canvas.pack()
 
         #canvas
-        self.canvas.create_rectangle(0, 0, canvasw, canvash, fill="light blue")
+        self.canvas.create_rectangle(0, 20, canvasw, canvash, fill="light blue")
 
         #base
         basex1 = 0
@@ -31,7 +31,7 @@ class World:
         self.objects.append(t)
         
     def update(self):
-        z = self.canvas.create_rectangle(100, 0, 200, 100, fill="red")
+        z = self.canvas.create_oval(15, 5, 25, 15, fill="red")
         sleep(0.1) # 100 ms
         self.canvas.delete(z)
         # objects, forces
@@ -41,7 +41,7 @@ class World:
 
 
     def draw(self):
-        z = self.canvas.create_rectangle(0, 0, 100, 100, fill="black")
+        z = self.canvas.create_oval(5, 5, 15, 15, fill="black")
         sleep(0.1) # 100 ms
         self.canvas.delete(z)
         
