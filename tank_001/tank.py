@@ -1,5 +1,30 @@
 import Tkinter as Tk
 
+class Charge:
+
+    def __init__(self, world, velocity, force, coord):
+        self.c = world.canvas
+
+        self.s = 10
+        self.v = (10,0) # m/s --- velocity tuple
+        self.f = (0,10) # Newton --- force tuple
+        self.xy = (100,100) # m --- coord tuple
+        self.d = (0,0) # m --- coord. delta tuple
+        self.o = self.c.create_oval(self.xy[0], self.xy[1], self.xy[0]+self.s, self.xy[1]+self.s, fill="yellow")
+
+    def draw(self):
+        print 'charge-draw'
+        self.c.move(self.o, self.d[0], self.d[1])
+        p = self.c.coords(self.o)
+        print p
+        self.c.create_oval(p[0], p[1], p[0]+2, p[1]+2, fill="gray")
+        
+    def recalc(self):
+        print 'charge-recalc'
+        self.d = (5,5)
+
+        
+        
 class Tank:
 
     def __init__(self, world, x, y):
@@ -36,3 +61,6 @@ class Tank:
         ch = self.c.create_oval(chx1, chy1, chx2, chy2, fill="yellow")
 
         self.ch = ch 
+
+    def recalc(self):
+        pass

@@ -8,9 +8,12 @@ class Handle:
 
     def key_function(self, event):
         #print "pressed", repr(event.char)
-        if event.char == u'a':
+        if event.char == u'1':
             print "add new tank"
             self.w.addTank()
+        elif event.char == u'2':
+            print "add a charge...!"
+            self.w.addCharge()
         else:
             print "undefined action"
 

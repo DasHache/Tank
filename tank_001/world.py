@@ -1,6 +1,6 @@
 import Tkinter as Tk
 from rtimer import BetterTimer
-from tank import Tank
+from tank import Tank, Charge
 from time import sleep
 
 class World:
@@ -29,33 +29,41 @@ class World:
     def addTank(self):
         t = Tank(self, 100, 100)
         self.objects.append(t)
-        
+
+    def addCharge(self):
+        o = Charge(self, (0,0), (0,0), (0,0))
+        self.objects.append(o)
+
     def update(self):
+        print 'w-up'
         z = self.canvas.create_oval(15, 5, 25, 15, fill="red")
         sleep(0.1) # 100 ms
         self.canvas.delete(z)
-        # objects, forces
-        # for t in self.objects: 
-        #     affect(t, force)
-        print 'called world.update()'
+
+        # Re-calculate: objects, forces, velocity
+        for o in self.objects: 
+            o.recalc()
+            
 
 
     def draw(self):
+        print 'w-draw'
         z = self.canvas.create_oval(5, 5, 15, 15, fill="black")
         sleep(0.1) # 100 ms
         self.canvas.delete(z)
         
         for o in self.objects:
             o.draw()
+
         
     def run(self):
 
         # add timer to call self.update()
-        timerUpdate = BetterTimer(self, "update", 1)
+        timerUpdate = BetterTimer(self, "update", 0.1)
         timerUpdate.start()
 
         # add timer to call self.draw()
-        timerDraw = BetterTimer(self, "draw", 3)
+        timerDraw = BetterTimer(self, "draw", 0.1)
         timerDraw.start()
 
         # run the world
