@@ -16,16 +16,25 @@ class RTimer:
 
 
 class BetterTimer:
-    def __init__(self, obj, obj_method_name, dt=1):
+    def __init__(self, w, obj, obj_method_name, dt=1):
+        self.done = False
+        self.world = w
         self.o = obj
         self.omn = obj_method_name
         self.dt = dt
 
     def start(self):
+        if self.done:
+            return
+        # print '666'
         self.t = Timer(self.dt, self.callback)
         self.t.start()
 
     def callback(self):
         getattr(self.o, self.omn)()
         self.start()
-        
+
+    def stop(self):
+        print '2'
+        self.t.cancel()
+        self.done = True
