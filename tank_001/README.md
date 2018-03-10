@@ -3,6 +3,16 @@
 
 ### Tank Project
 
+v.0.6.0
+
+  - Add barrel angle and power control
+  - Add labels for those parameters
+  - Keys:
+    1 = create a tank
+    2 = create a charge
+    q = power up (a = down)
+    w = increase barrel's angle, (s = decrease)
+    
 v.0.5.0
 
   - Add update() method to class World.
