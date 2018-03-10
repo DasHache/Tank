@@ -29,28 +29,47 @@ class World:
 
         #
         self.v = 5
-        self.e = Tk.Entry(root)
-        self.e.bind('<Return>', self.speedOnEnter)
-        self.e.pack()
+        self.a = 0
 
+        self.lpn = Tk.Label(root, text="Power: ")
+        self.lpn.pack()
 
-        self.b = Tk.Button(root, text="get", width=10, command=self.readSpeed)
-        self.b.pack()
+        self.svp = Tk.StringVar()
+        self.lpv = Tk.Label(root, textvariable=self.svp)
+        self.lpv.pack()
+
+        self.lan = Tk.Label(root, text="Angle: ")
+        self.lan.pack()
+
+        self.sva = Tk.StringVar()
+        self.lav = Tk.Label(root, textvariable=self.sva)
+        self.lav.pack()
+
+        # self.e = Tk.Entry(root)
+        # self.e.bind('<Return>', self.speedOnEnter)
+        # self.e.pack()
+        # self.b = Tk.Button(root, text="get", width=10, command=self.readSpeed)
+        # self.b.pack()
 
         #account the non-static objects
         self.objects = []
 
-    def speedOnEnter(self, e):
-        x = e.widget.get()
-        print x
-        v_ = int(x)
-        self.v = v_
+    # def speedOnEnter(self, e):
+    #     x = e.widget.get()
+    #     print x
+    #     v_ = int(x)
+    #     self.v = v_
         
-    def readSpeed(self):
-        v_ = int(self.e.get())
-        print v_
-        self.v = v_
-        
+    # def readSpeed(self):
+    #     v_ = int(self.e.get())
+    #     print v_
+    #     self.v = v_
+
+    def updateLabels(self):
+        self.svp.set(str(self.v))
+        self.sva.set(str(self.a))
+
+
     def addTank(self):
         t = Tank(self, 100, 100)
         self.objects.append(t)
@@ -59,6 +78,26 @@ class World:
         o = Charge(self, (self.v, 0), (0,0), (0,0))
         self.objects.append(o)
 
+    def powerUp(self):
+        if self.v <= 100:
+            self.v +=5
+
+    def powerDown(self):
+        if self.v >=5:
+            self.v -=5
+
+    def barrelUp(self):
+        if self.a <= 84:
+            self.a +=5
+
+    def barrelDown(self):
+        if self.a >= 5:
+            self.a -=5
+
+        
+        
+
+        
     def update(self):
         # print 'w-up'            
         z = self.canvas.create_oval(15, 5, 25, 15, fill="red")
@@ -93,14 +132,10 @@ class World:
         self.ground.mainloop()
 
     def on_closing(self):
-        print '3'
         self.timerUpdate.stop()
         self.timerDraw.stop()
-        print '4'
-
-        print '5'
         sleep(2)
-        print '6'
+
         # self.ground.destroy()   
         exit()
 

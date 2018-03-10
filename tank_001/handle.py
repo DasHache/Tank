@@ -14,9 +14,18 @@ class Handle:
         elif event.char == u'2':
             print "add a charge...!"
             self.w.addCharge()
+        elif event.char == u'w':
+            self.w.barrelUp()
+        elif event.char == u's':
+            self.w.barrelDown()
+        elif event.char == u'q':
+            self.w.powerUp()
+        elif event.char == u'a':
+            self.w.powerDown()
         else:
             print "undefined action"
 
+        self.w.updateLabels()
 
     def mouse_function(self, event):
         self.canvas.focus_set()
