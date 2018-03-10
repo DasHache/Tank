@@ -14,10 +14,12 @@ class Handle:
         elif event.char == u'2':
             print "add a charge...!"
             self.w.addCharge()
+
         elif event.char == u'w':
-            self.w.barrelUp()
+            self.w.changeBarrelAngle(+5)
         elif event.char == u's':
-            self.w.barrelDown()
+            self.w.changeBarrelAngle(-5)
+
         elif event.char == u'q':
             self.w.powerUp()
         elif event.char == u'a':

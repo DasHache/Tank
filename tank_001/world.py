@@ -2,7 +2,7 @@ import Tkinter as Tk
 from rtimer import BetterTimer
 from tank import Tank, Charge
 from time import sleep
-
+from math import sin,cos,pi
 
 
 
@@ -12,8 +12,8 @@ class World:
 
         root = Tk.Tk()
         self.ground = root
-        canvasw = 700
-        canvash = 500
+        canvasw = 1000
+        canvash = 600
         self.canvas = Tk.Canvas(root, width=canvasw, height=canvash)
         self.canvas.pack()
 
@@ -22,7 +22,7 @@ class World:
 
         #base
         basex1 = 0
-        basey1 = canvash - 300
+        basey1 = canvash - 100
         basex2 = 100
         basey2 = canvash
         self.canvas.create_rectangle(basex1, basey1, basex2, basey2, fill="black")
@@ -67,15 +67,18 @@ class World:
 
     def updateLabels(self):
         self.svp.set(str(self.v))
-        self.sva.set(str(self.a))
-
+        self.sva.set(str(self.t.getBarrelAngle()))
 
     def addTank(self):
-        t = Tank(self, 100, 100)
-        self.objects.append(t)
+        self.t = Tank(self, 100, 500)
+        self.objects.append(self.t)
 
     def addCharge(self):
-        o = Charge(self, (self.v, 0), (0,0), (0,0))
+        startPos = self.t.getBarrelEndPos()
+        balpha = self.t.getBarrelAngle()
+        vx =  self.v * cos(pi/180 * balpha)
+        vy = -self.v * sin(pi/180 * balpha)
+        o = Charge(self, (vx, vy), startPos)
         self.objects.append(o)
 
     def powerUp(self):
@@ -86,17 +89,8 @@ class World:
         if self.v >=5:
             self.v -=5
 
-    def barrelUp(self):
-        if self.a <= 84:
-            self.a +=5
-
-    def barrelDown(self):
-        if self.a >= 5:
-            self.a -=5
-
-        
-        
-
+    def changeBarrelAngle(self, da):
+        self.t.changeBarrelAngle(da)
         
     def update(self):
         # print 'w-up'            
